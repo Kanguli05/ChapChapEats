@@ -1,5 +1,5 @@
 
-import { /*AppState,*/ Auth0Provider /*useAuth0 */ /*User */ } from "@auth0/auth0-react";
+import { /*AppState,*/ AppState, Auth0Provider /*useAuth0 */ /*User */ } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -24,10 +24,9 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
     throw new Error("Unable to initiate auth");
   }
 
-  const onRedirectCallback = /*async */ (/*appState?: AppState, user?: User*/) => {
-    //const token = await getAccessTokenSilently();
-    //console.log("token", token);
-    navigate("/auth-callback");
+  const onRedirectCallback = (appState?: AppState) => {
+   
+    navigate(appState?.returnTo || "/auth-callback");
   }
 
   return(
